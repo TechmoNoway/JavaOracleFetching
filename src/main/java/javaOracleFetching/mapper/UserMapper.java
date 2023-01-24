@@ -20,4 +20,6 @@ public interface UserMapper {
 	void saveUser(User userParam) throws SQLException;
 	
 	void deleteUser(@Param("userId") long userId) throws SQLException;
+	
+	void updateUserNameByUserId(@Param("userId") long userId, @Param("userName") String userName) throws SQLException;
 }

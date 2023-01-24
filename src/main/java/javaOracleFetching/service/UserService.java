@@ -17,4 +17,6 @@ public interface UserService {
 	void saveUser(User userParam) throws SQLException;
 	
 	void deleteUser(long userId) throws SQLException;
+	
+	void updateUserNameByUserId(long userId, String userName) throws SQLException;
 }

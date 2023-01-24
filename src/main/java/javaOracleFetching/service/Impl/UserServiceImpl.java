@@ -44,5 +44,11 @@ public class UserServiceImpl implements UserService{
 		mapper.deleteUser(userId);;
 		
 	}
+
+	@Override
+	public void updateUserNameByUserId(long userId, String userName) throws SQLException {
+		mapper.updateUserNameByUserId(userId, userName);
+		
+	}
 	
 }

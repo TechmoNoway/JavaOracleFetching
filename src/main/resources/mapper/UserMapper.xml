@@ -101,6 +101,15 @@
 		
 	</delete>
 	
+	<update id="updateUserNameByUserId">
+		UPDATE SYSTEM.f4_inv_hr_user
+		SET
+			TENKH=#{userName}
+		WHERE
+			MAKH=#{userId}
+	
+	</update>
+	
 	
 </mapper>
 
