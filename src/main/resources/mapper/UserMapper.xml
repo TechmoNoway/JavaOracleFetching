@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="javaOracleFetching.mapper.UserMapper">
+	
+	<resultMap
+	id="userResultMap"
+	type="javaOracleFetching.model.User"
+	> 
+		<result column="MAKH" property="maKH"></result>
+		<result column="TENKH" property="tenKH"></result>
+		<result column="DIACHI" property="diaChi"></result>
+		<result column="MAIL" property="mail"></result>
+		<result column="PHONE" property="phone"></result>
+		<result column="IMAGE" property="image"></result>
+		<result column="BIRTHDAY" property="birthday"></result>
+		<result column="ISUSE" property="isUse"></result>
+		<result column="ROLEID" property="roleId"></result>
+	
+	</resultMap>
+	
+	<select id="getAllUser" resultMap="userResultMap">
+		SELECT   usr.MAKH
+        		,usr.TENKH
+        		,usr.DIACHI
+        		,usr.MAIL
+        		,usr.PHONE
+        		,usr.IMAGE
+        		,usr.BIRTHDAY
+        		,usr.ISUSE
+        		,usr.ROLEID
+		FROM SYSTEM.f4_inv_hr_user usr 
+		WHERE 1 = 1
+	
+	</select>
+
+	<select id="getUserById" resultMap="userResultMap">
+		SELECT   usr.MAKH
+        		,usr.TENKH
+        		,usr.DIACHI
+        		,usr.MAIL
+        		,usr.PHONE
+        		,usr.IMAGE
+        		,usr.BIRTHDAY
+        		,usr.ISUSE
+        		,usr.ROLEID
+		FROM SYSTEM.f4_inv_hr_user usr 
+		WHERE usr.MAKH = #{userId}
+	
+	</select>	
+	
+	<select id="getUserListByRoleIdAndRoleName" resultMap="userResultMap">
+		SELECT   usr.MAKH
+        		,usr.TENKH
+        		,usr.DIACHI
+        		,usr.MAIL
+        		,usr.PHONE
+        		,usr.IMAGE
+        		,usr.BIRTHDAY
+        		,usr.ISUSE
+        		,usr.ROLEID
+		FROM SYSTEM.f4_inv_hr_user usr
+		LEFT JOIN SYSTEM.f4_inv_hr_role rle on usr.ROLEID = rle.ROLEID  	
+		AND rle.ROLEID = #{roleId}
+		WHERE rle.ROLENAME = #{roleName}
+		
+	</select>	
+	
+	<insert id="saveUser">
+		INSERT INTO SYSTEM.f4_inv_hr_user
+		(
+			makh
+        	,tenkh
+        	,diachi
+        	,mail
+        	,phone
+        	,image
+        	,birthday
+        	,isuse
+        	,roleid
+        ) 
+        VALUES
+        (
+        	#{maKH}
+        	,#{tenKH}
+        	,#{diaChi}
+        	,#{mail}
+        	,#{phone}
+        	,#{image}
+        	,#{birthday}
+        	,#{isUse}
+        	,#{roleId}       
+        )
+		
+	</insert>	
+	
+	<delete id="deleteUser">
+		DELETE FROM SYSTEM.f4_inv_hr_user 
+		WHERE MAKH = #{userId} 
+		
+	</delete>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
