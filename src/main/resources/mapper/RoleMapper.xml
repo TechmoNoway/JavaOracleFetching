@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="javaOracleFetching.mapper.RoleMapper">
+	
+	<resultMap 
+	id="roleResultMap"
+	type="javaOracleFetching.model.Role"
+	>
+	
+		<result column="ROLEID" property="roleId"></result>
+		<result column="ROLENAME" property="roleName"></result>
+		<result column="ISUSE" property="isUse"></result>
+		<result column="IMAGE" property="image"></result>
+		<result column="DESCRIPTION" property="description"></result>
+		
+	</resultMap>
+
+	<select id="getAllRole" resultMap="roleResultMap">
+		
+		SELECT   rle.ROLEID
+        		,rle.ROLENAME
+        		,rle.ISUSE
+        		,rle.IMAGE
+        		,rle.DESCRIPTION
+		FROM SYSTEM.f4_inv_hr_role rle
+		WHERE 1 = 1
+	
+	</select>
+
+	<insert id="saveRole">
+		
+		INSERT INTO SYSTEM.f4_inv_hr_role
+		(
+			ROLEID,	
+			ROLENAME,
+			ISUSE,
+			IMAGE,
+			DESCRIPTION
+		)
+		VALUES
+		(
+			#{roleId},
+			#{roleName},
+			#{isUse},
+			#{image},
+			#{description}
+		)
+	
+	</insert>
+
+
+
+
+</mapper>
+
+
+
+
+
+
+

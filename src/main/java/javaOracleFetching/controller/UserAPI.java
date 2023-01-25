@@ -103,8 +103,7 @@ public class UserAPI {
 		}
 		
 		return ResponseEntity.ok(result);
-		
-		
+			
 	}
 	
 }
